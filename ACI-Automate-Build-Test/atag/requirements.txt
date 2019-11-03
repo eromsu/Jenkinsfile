@@ -1,0 +1,5 @@
+openpyxl==2.4.8
+jinja2
+pyyaml
+future
+requests

@@ -1,0 +1,80 @@
+library identifier: 'as-jenkins-pipeline-utils-dsl@master', retriever: modernSCM(
+        [$class: 'GitSCMSource', 
+        credentialsId: '345c79bc-9def-4981-94b5-d8190fdd2304',
+        remote: 'https://wwwin-github.cisco.com/AS-Community/as-jenkins-pipeline-utils-dsl.git'])
+
+library identifier: 'spade-utils@master', retriever: modernSCM(
+        [$class: 'GitSCMSource', 
+        credentialsId: '345c79bc-9def-4981-94b5-d8190fdd2304',
+        remote: 'https://wwwin-github.cisco.com/AS-Community/spade-utils.git'])
+        
+
+
+node('bwi-sio-cicd01') {
+    try {
+
+    
+            stage('Build and Quality Analysis'){
+                    
+                            stage('Build'){
+                                echo 'Build'
+                                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '345c79bc-9def-4981-94b5-d8190fdd2304', url: 'https://wwwin-github.cisco.com/AS-Internal/ACI-Automate-Build-Test.git']]])
+                                sh '''
+            		                    #!/bin/bash
+            		                    pwd
+            		                    tar -cvf ACI-Automate-Build-Test.tar ../ACI-Automate-Build-Test
+            		                    find . ! -name 'ACI-Automate-Build-Test.tar' -type f -maxdepth 1 -exec rm {} +
+         		                    '''
+                            }
+                            
+                            stage('Quality Analysis'){
+                                    sonarqube projectKey: 'cx-spade-emear-231', projectName: 'cx-spade-emear-231', exludedDirs: '', sonarUrl: 'https://engci-sonar-gpk.cisco.com/sonar/'
+                            }                    
+                                       
+            }
+			
+            
+            stage('Test Analysis'){
+		    
+                echo 'RASTA ANALYSIS'    
+				rastaForDefaultPipeline sampleTestsLoc: 'tests/unittests', build: env.BUILD_NUMBER, outputsDir: '/home/cisco/RASTA/outputs'  
+		    
+            }
+            
+
+            
+            stage('Publish'){
+                def server = Artifactory.newServer url: 'http://engci-maven.cisco.com/artifactory', username:'as-deployer',password:'yp41v2t9wiuanhfr'
+                
+                    def uploadSpec = """{
+        								"files": [
+                									{
+                    									"pattern": "*.tar",
+                    									"target": "AS-release/Internal/ACI-Automate-Build-Test/",
+                    									"props": "p1=v1;p2=v2"
+                									}
+            									]
+        			}"""
+        			
+        			def buildInfo1 = server.upload spec: uploadSpec
+        			server.publishBuildInfo buildInfo1
+            }
+            
+
+            
+    } catch (err) {
+        echo "${err}"
+        println err
+            
+    }finally{
+
+
+	//stage('Rally Plugin'){
+                build job: '../Template-Jobs/PostBuildAction', parameters: [string(name: 'JobName', value: env.JOB_NAME)], wait: false 
+                build job: '../Template-Jobs/PostTestResultsAction', parameters: [string(name: 'JobName', value: env.JOB_NAME),string(name: 'buildNumber', value: env.BUILD_NUMBER)], wait: false
+                //build job: '../Template-Jobs/PostTimstestresults', parameters: [string(name: 'JobName', value: env.JOB_NAME),string(name: 'buildNumber', value: env.BUILD_NUMBER),string(name:'timsId',value:'Tl24293p'),string(name:'timsToken',value:'25000000006C0000000000034600091H'),string(name:'userName',value:'rashredd')], wait: false
+                
+     //    }
+    
+    }
+}

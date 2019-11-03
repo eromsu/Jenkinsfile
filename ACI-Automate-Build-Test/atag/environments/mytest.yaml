@@ -1,0 +1,25 @@
+# http://cx-emear-tools-stats.cisco.com/automation/jenkins-aar2-ansible-inventory.yaml
+all:
+  hosts:
+    aar2-lab-vcenter1.cisco.com:
+    10.49.96.1:
+  children:
+    vcenter:
+      hosts:
+        aar2-lab-vcenter1.cisco.com:
+    gateway:
+      hosts:
+        10.49.96.1:
+          ansible_connection: network_cli
+          ansible_network_os: ios
+          ansible_user: jenkins
+          ansible_password: NZshtheU4PoHjTe
+  vars:
+    availability_retries: 30
+    availability_delay: 30
+    #ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    script_directory: /ansible
+    vcenter_hostname: aar2-lab-vcenter1.cisco.com
+    vcenter_username: jenkins@vsphere.local
+    vcenter_password: EYzQc#DKwMgWE6aJ
+    datacenter_name: aar2-lab

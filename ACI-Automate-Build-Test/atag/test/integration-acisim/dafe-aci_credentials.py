@@ -1,0 +1,11 @@
+debug = "False"
+data_validation_file = "data_validation.yaml"
+apic_ip_address = "10.49.96.75"   # Do not delete leave empty if you use offline mode
+apic_admin_user ="admin"   # Do not delete leave empty if you use offline mode
+apic_admin_password ="Cisco123"	 # Do not delete leave empty if you use offline mode
+input_excel_file = "/ATAG/test/integration-acisim/acisim-dafe-sheet.xlsx"
+fabric_template_path = "./templates/"
+execution_mode = "online"   # Possible choices are   offline  or online
+ansible_playbook_file_name = "dafe_ansible_playbook.yml"
+ansible_data_input_file_name = "dafe_ansible_input_file_name.yml"
+ansible_playbook_template_name = "playbook.j2"

@@ -1,0 +1,469 @@
+# This section provide the mandatory environment settings for the script
+testcase_config:
+  dafe_workbook: 'sample_dafe_sheet.xlsx'    # Mandatory parameter specifying the name of the DAFE excel sheet
+  testbed_file: 'testbed.yaml'
+  device_username: 'admin'
+  device_password: 'Cisco123'
+  template_directory: './templates/'
+  default_test_type:
+    - 'configuration'
+    - 'faults'
+    - 'operational_state'
+  default_faults_variables:
+    critical: 0
+    major: 0
+    minor: 0
+
+# This section controls which type of test category to generate - modifications are optional
+# This is also where custom variables can be added to each test category
+tests_to_generate:
+  - category: 'bgp_rr'
+    test_enabled: 'yes'
+    test_type:
+      - 'configuration'
+      - 'faults'
+  - category: 'dns_profile'
+    test_enabled: 'yes'
+  - category: 'dns_provider'
+    test_enabled: 'yes'
+  - category: 'datetime_profile'
+    test_enabled: 'yes'
+  - category: 'datetime_ntp_prov'
+    test_enabled: 'yes'
+  - category: 'datetime_ntp_status'
+    test_enabled: 'no'
+  - category: 'vlan_pool'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 0
+      minor: 1
+  - category: 'vlan_encap_block'
+    test_enabled: 'yes'
+    test_type:
+      - 'configuration'           # Example of how test types can be defined on a per test category baisis
+  - category: 'domain'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 2
+      minor: 0
+  - category: 'vmm_domain'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 1
+      minor: 0
+  - category: 'aaep'
+    test_enabled: 'yes'
+  - category: 'aeep_domain_association'
+    test_enabled: 'yes'
+  - category: 'vpc_domain'
+    test_enabled: 'yes'
+  - category: 'switch_profile'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 0
+      minor: 2
+  - category: 'interface_policies_cdp'
+    test_enabled: 'yes'
+  - category: 'interface_policies_l2'
+    test_enabled: 'yes'
+  - category: 'interface_policies_link'
+    test_enabled: 'yes'
+  - category: 'interface_policies_lldp'
+    test_enabled: 'yes'
+  - category: 'interface_policies_mcp'
+    test_enabled: 'yes'
+  - category: 'interface_policies_portchannel'
+    test_enabled: 'yes'
+  - category: 'interface_policies_stp'
+    test_enabled: 'yes'
+  - category: 'interface_policy_group'
+    test_enabled: 'yes'
+  - category: 'interface_profile'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 0
+      minor: 1
+  - category: 'interface_profile_to_switch_profile'
+    test_enabled: 'yes'
+  - category: 'interface_selector'
+    test_enabled: 'yes'
+  - category: 'tenant'
+    test_enabled: 'yes'
+  - category: 'vrf'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 1
+      major: 2
+      minor: 3
+  - category: 'vrf_bgp_route_target'
+    test_enabled: 'yes'
+  - category: 'bridge_domain'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 0
+      minor: 1
+  - category: 'bridge_domain_subnet'
+    test_enabled: 'yes'
+  - category: 'bridge_domain_l3out'
+    test_enabled: 'yes'
+  - category: 'app_profile'
+    test_enabled: 'yes'
+  - category: 'end_point_group'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 5
+      minor: 2
+  - category: 'epg_domain_association'
+    test_enabled: 'yes'
+  - category: 'epg_static_binding'
+    test_enabled: 'yes'
+  - category: 'l3out'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 0
+      minor: 2
+  - category: 'l3out_node_profile'
+    test_enabled: 'yes'
+  - category: 'l3out_node_bgp_peer'
+    test_enabled: 'yes'
+    test_type:
+      - 'configuration'
+      - 'faults'
+  - category: 'l3out_int_profile'
+    test_type:
+      - 'configuration'
+    test_enabled: 'yes'
+  - category: 'external_epg'
+    test_enabled: 'yes'
+    faults_variables:             # Example of how custom variables can be added. Name must be "<test_type>_variables"
+      critical: 0
+      major: 0
+      minor: 2
+  - category: 'external_epg_subnet'
+    test_enabled: 'yes'
+  - category: 'filter'
+    test_enabled: 'yes'
+  - category: 'filter_entry'
+    test_enabled: 'yes'
+  - category: 'contract'
+    test_enabled: 'yes'
+  - category: 'subject'
+    test_enabled: 'yes'
+  - category: 'epg_contract'
+    test_enabled: 'yes'
+  - category: 'software_version_apic'
+    test_enabled: 'yes'            # Verification disabled by default, as manual specification of software version is needed
+    operational_state_variables:
+      software_version: '3.2(1m)'
+  - category: 'software_version_node'
+    test_enabled: 'no'            # Verification disabled by default, as manual specification of software version is needed
+    operational_state_variables:
+      software_version: '3.2(1m)'
+  - category: 'login'
+    test_enabled: 'yes'            # Verification disabled by default, as login are implicitly tested by any other test case
+  - category: 'infra_vlan_apic'
+    test_enabled: 'yes'
+  - category: 'infra_vlan_node'
+    test_enabled: 'yes'
+  - category: 'tep_pool_pod'
+    test_enabled: 'yes'
+  - category: 'cimc_login'
+    test_enabled: 'no'
+  - category: 'apic_hardware_state'
+    test_enabled: 'no'
+  - category: 'node_provisioning_apic'
+    test_enabled: 'yes'
+  - category: 'node_provisioning_node'
+    test_enabled: 'yes'
+  - category: 'connectivity_fabric'
+    test_enabled: 'yes'
+  - category: 'connectivity_apic'
+    test_enabled: 'no'
+  - category: 'connectivity_host'
+    test_enabled: 'no'
+  - category: 'route_presence_ipv4'
+    test_enabled: 'no'
+    operational_state_variables:
+      <tenant_name>|<vrf_name>|routes:  # Example of how to specify which routes that should exist in the fabric routing table
+        - '192.168.0.0/24'
+        - '10.0.0.0/8'
+  - category: 'interface_counters'
+    test_enabled: 'no'
+    operational_state_variables:
+      counter_collection_interval: '1m' # Interval between counter collection (this example gives 1 minute delay between collection)
+
+# This section provides the link between DAFE sheet name and RASTA test case template
+#
+# No modifications would typically be required in this section, unless you explicitly
+# want to customize the tests being created by the script.
+testcase_templates:
+  rasta_robot_header:
+    description: 'Robot file header template'
+    template: 'rasta_header.robot'
+  bgp_rr:
+    description: 'Fabric BGP AS and Route Reflector'
+    input_sheet: 'bgp_rr'
+    template: 'bgpInstP.robot'
+  dns_profile:
+    description: 'DNS Profile'
+    input_sheet: 'dns_profile'
+    template: 'dnsProfile.robot'
+  dns_provider:
+    description: 'DNS Provider'
+    input_sheet: 'dns_provider'
+    template: 'dnsProv.robot'
+  datetime_profile:
+    description: 'Datetime Profile'
+    input_sheet: 'datetime_pol'
+    template: 'datetimePol.robot'
+  datetime_ntp_prov:
+    description: 'Datetime NTP Provider'
+    input_sheet: 'datetime_ntp_prov'
+    template: 'datetimeNtpProv.robot'
+  datetime_ntp_status:
+    description: 'Datetime NTP Sync Status'
+    input_sheet: ''
+    template: 'datetime_ntp_status.robot'
+  vlan_pool:
+    description: 'VLAN Pool'
+    input_sheet: 'vlan_pool'
+    template: 'fvnsVlanInstP.robot'
+  vlan_encap_block:
+    description: 'Vlan Encapsulation Block'
+    input_sheet: 'vlan_encap_block'
+    template: 'fvnsEncapBlk.robot'
+  domain:
+    description: 'Domain'
+    input_sheet: 'domain'
+    template: 'anyDomP.robot'
+  vmm_domain:
+    description: 'VMM Domain'
+    input_sheet: 'vmm_domain'
+    template: 'vmmDomP.robot'
+  aaep:
+    description: 'AAEP'
+    input_sheet: 'aaep'
+    template: 'infraAttEntityP.robot'
+  aeep_domain_association:
+    description: 'AAEP Domain Association'
+    input_sheet: 'aeep_domain_association'
+    template: 'infraAttEntityPRsDomP.robot'
+  vpc_domain:
+    description: 'vPC Domain'
+    input_sheet: 'vpc_domain'
+    template: 'vpcDom.robot'
+  switch_profile:
+    description: 'Switch Profile'
+    input_sheet: 'switch_profile'
+    template: 'infraNodeP.robot'
+  interface_policies_cdp:
+    description: 'Interface Policies - CDP'
+    input_sheet: 'intpol_cdp'
+    template: cdpIfPol.robot
+  interface_policies_l2:
+    description: 'Interface Policies - L2'
+    input_sheet: 'intpol_l2'
+    template: l2IfPol.robot
+  interface_policies_link:
+    description: 'Interface Policies - Link Level'
+    input_sheet: 'intpol_link'
+    template: fabricHIfPol.robot
+  interface_policies_lldp:
+    description: 'Interface Policies - LLDP'
+    input_sheet: 'intpol_lldp'
+    template: lldpIfPol.robot
+  interface_policies_mcp:
+    description: 'Interface Policies - MCP'
+    input_sheet: 'intpol_mcp'
+    template: mcpIfPol.robot
+  interface_policies_portchannel:
+    description: 'Interface Policies - Port channel'
+    input_sheet: 'intpol_port_channel'
+    template: lacpLagPol.robot
+  interface_policies_stp:
+    description: 'Interface Policies - STP'
+    input_sheet: 'intpol_stp'
+    template: stpIfPol.robot
+  interface_policy_group:
+    description: 'Interface Policy Group'
+    input_sheet: 'interface_policy_group'
+    template: 'infraAccBndlGrp.robot'
+  interface_profile:
+    description: 'Interface Profile'
+    input_sheet: 'interface_profile'
+    template: 'infraAccPortP.robot'
+  interface_profile_to_switch_profile:
+    description: 'Interface Profile to Switch Profile Association'
+    input_sheet: 'associate_switchprof_intprof'
+    template: 'infraRSxxPortP.robot'
+  interface_selector:
+    description: 'Interface Selector'
+    input_sheet: 'interface_selector'
+    template: 'infraHPortS.robot'
+  tenant:
+    description: 'Tenant'
+    input_sheet: 'tenant'
+    template: 'fvTenant.robot'
+  vrf:
+    description: 'VRF'
+    input_sheet: 'vrf'
+    template: 'fvCtx.robot'
+  vrf_bgp_route_target:
+    description: 'VRF BGP Route-Target'
+    input_sheet: 'vrf_bgp_route_target'
+    template: 'bgpRtTargetP.robot'
+  bridge_domain:
+    description: 'Bridge Domain'
+    input_sheet: 'bridge_domain'
+    template: 'fvBD.robot'
+  bridge_domain_subnet:
+    description: 'Bridge Domain Subnet'
+    input_sheet: 'bd_subnet'
+    template: 'fvSubnet.robot'
+  bridge_domain_l3out:
+    description: 'Bridge Domain L3Out'
+    input_sheet: 'bd_l3out'
+    template: 'fvRsBDToOut.robot'
+  app_profile:
+    description: 'Application Profile'
+    input_sheet: 'application_profile'
+    template: 'fvAP.robot'
+  end_point_group:
+    description: 'EPG'
+    input_sheet: 'end_point_group'
+    template: 'fvAEPg.robot'
+  epg_domain_association:
+    description: 'EPG Domain Association'
+    input_sheet: 'epg_domain_association'
+    template: 'fvRsDomAtt.robot'
+  epg_static_binding:
+    description: 'EPG Static Binding'
+    input_sheet: 'epg_static_binding'
+    template: 'fvAEPg_static_binding.robot'
+  l3out:
+    description: 'External Routed Domain'
+    input_sheet: 'l3out'
+    template: 'l3extOut.robot'
+  l3out_node_profile:
+    description: 'L3Out Node Profile'
+    input_sheet: 'l3out_node_profile'
+    template: 'l3extNodeProf.robot'
+  l3out_node_bgp_peer:
+    description: 'L3Out Node Level BGP Peer'
+    input_sheet: 'nodeBgpPeer'
+    template: 'bgpPeerP.robot'
+  l3out_int_profile:
+    description: 'L3Out Interface Profile'
+    input_sheet: 'l3out_int_profile'
+    template: 'l3extNodeIntProf.robot'
+  external_epg:
+    description: 'External EPG'
+    input_sheet: 'external_epg'
+    template: 'instP.robot'
+  external_epg_subnet:
+    description: 'External EPG Subnet'
+    input_sheet: 'external_epg_subnet'
+    template: 'l3extSubnet.robot'
+  filter:
+    description: 'Filter'
+    input_sheet: 'filter'
+    template: 'vzFilter.robot'
+  filter_entry:
+    description: 'Filter Entry'
+    input_sheet: 'filter_entry'
+    template: 'vzEntry.robot'
+  contract:
+    description: 'Contract'
+    input_sheet: 'contract'
+    template: 'vzBrCp.robot'
+  subject:
+    description: 'Contract Subject'
+    input_sheet: 'subject'
+    template: 'vzSubj.robot'
+  epg_contract:
+    description: 'Assign Contract to EPG'
+    input_sheet: 'epg_contract'
+    template: 'fvAEPgCtr.robot'
+  software_version_apic:
+    description: 'Software Version - APIC'
+    input_sheet: 'apic_controller'
+    template: 'software_version_apic.robot'
+  infra_vlan_apic:
+    description: 'Infra VLAN - APIC'
+    input_sheet: 'apic_controller'
+    template: 'infra_vlan_apic.robot'
+  infra_vlan_node:
+    description: 'Infra VLAN - Node'
+    input_sheet: 'node_provisioning'
+    template: 'infra_vlan_node.robot'
+  tep_pool_pod:
+    description: 'POD TEP Pool'
+    input_sheet: ''
+    template: 'tep_pool_setup.robot'
+  software_version_node:
+    description: 'Software Version - Node'
+    input_sheet: 'node_provisioning'
+    template: 'software_version_node.robot'
+  login:
+    description: 'APIC Login'
+    input_sheet: ''                     # Login test case template does not require any input from DAFE Excel
+    template: 'login.robot'
+  cimc_login:
+    description: 'APIC CIMC Login'
+    input_sheet: 'apic_controller'
+    template: 'login_cimc.robot'
+  apic_hardware_state:
+    description: 'APIC Hardware State'
+    input_sheet: 'apic_controller'
+    template: 'hardware_state_cimc.robot'
+  node_provisioning_apic:
+    description: 'Node Provisioning - APIC'
+    input_sheet: 'apic_controller'
+    template: 'node_provisioning_apic.robot'
+  node_provisioning_node:
+    description: 'Node Provisioning - Node'
+    input_sheet: 'node_provisioning'
+    template: 'node_provisioning_node.robot'
+  connectivity_fabric:
+    description: 'Fabric Connectivity'
+    input_sheet: ''
+    template: 'connectivity_fabric.robot'
+  connectivity_apic:
+    description: 'APIC Connectivity'
+    input_sheet: ''
+    template: 'connectivity_apic.robot'
+  connectivity_host:
+    description: 'Host Connectivity'
+    input_sheet: ''
+    template: 'connectivity_host.robot'
+  route_presence_ipv4:
+    description: 'Route Precense - IPv4'
+    input_sheet: 'vrf'
+    template: 'route_presence_ipv4.robot'
+  interface_counters:
+    description: 'Interface Counters'
+    input_sheet: ''
+    template: 'interface_counters.robot'
+
+testcase_types:
+  configuration:
+    name: 'Configuration Verification'
+    description: |
+      These tests focuses on performing configuration verification. These tests typically focus on individual components of the configuration, so a typical test suite would consist of test from different configuration categories
+  faults:
+    name: 'Fault Verification'
+    description: |
+      Tese tests checkes verfies the number of critical, major, and minor faults present in the fabric for against the "expected" baseline. These tests typically focus on individual components of the configuration. 
+  operational_state:
+    name: 'Operational State Verification'
+    description: |
+      These tests focuses on verification of operational state within the fabric. Examples of this could be software version, state of BGP peers, etc.
+

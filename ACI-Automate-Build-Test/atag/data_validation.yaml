@@ -1,0 +1,5518 @@
+---
+configuration:
+    firmwareFwGrp.xml:
+        name:
+            descr: "Firmware group name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        firmware_version:
+            descr: "Firmware Version"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "^n9000-[1-9]+\\.[0-9]\\([0-9][a-z]\\)"
+                # Pattern should be similar to n9000-13.2(3i)
+                exact_match: True
+            mandatory: False
+    maintMaintGrp.xml:
+        name:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+    NodefirmwareFwGrp.xml:
+        firmware_group:
+            descr: "Firmware Group Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        node_id:
+            descr: "Node id"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            mandatory: True
+    NodemaintMaintGrp.xml:
+        maintenance_group:
+            descr: "Maintenance Group Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        node_id:
+            descr: "Node id"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            mandatory: True
+    fabricNodeIdentPol.xml:
+        name:
+            descr: "Switch Hostname"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            default: "None"
+        serial_number:
+            descr: "Switch Serial Number"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            default: "None"
+        node_id:
+            descr: "Switch assigned Node Id"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            mandatory: True
+            default: "None"
+        pod_id:
+            descr: "Switch assigned POD Id"
+            type : "int"
+            range:
+                - 1
+                - 10
+            mandatory: True
+            default: "None"
+    mgmtMgmtP.xml:
+        name:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        oob_ip:
+            type: "str"
+            regex:
+                pattern: "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+\\/[0-9]+"
+                exact_match: True
+            mandatory: True
+        oob_gw:
+            type: "str"
+            regex:
+                pattern: "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+"
+                exact_match: True
+            mandatory: True
+        inband_ip:
+            type: "str"
+            regex:
+                pattern: "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+\\/[0-9]+"
+                exact_match: True
+            mandatory: False
+        inband_gw:
+            type: "str"
+            regex:
+                pattern: "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+"
+                exact_match: True
+            mandatory: False
+        node_id:
+            type: "int"
+            range:
+                - 101
+                - 4000
+            mandatory: True
+        pod_id:
+            type: "int"
+            mandatory: True
+    infraNodeP.robot:
+        name:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        switch_profile_type:
+            enum:
+                - "leaf"
+                - "spine"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        switch_selector:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        to_node_id:
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        from_node_id:
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        switch_policy_group:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    vpcDom.robot:
+        name:
+            descr: "vPC Domain Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        left_node_id:
+            descr: "Node id of the first vPC Domain Member"
+            type : "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: True
+        right_node_id:
+            descr: "Node id of the second vPC Domain Member"
+            type : "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: True
+        logical_pair_id:
+            descr: "vPC Domain id"
+            type : "int"
+            range :
+                - 1
+                - 1000
+            source: "workbook"
+            mandatory: True
+    fabricSetupP.xml:
+        pod_id:
+            descr: "Fabric POD id"
+            type: "int"
+            range:
+                - 2
+                - 10
+            mandatory: True
+        tep_pool:
+            descr: "POD TEP IP Pool range"
+            type: "str"
+            regex:
+                pattern: "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]\\/[0-9]+"
+                exact_match: True
+            mandatory: True
+    fvFabricExtConnP.xml:
+        community_route_target:
+            descr: "Route Target Community"
+            type: "str"
+            regex:
+                pattern: "[0-9]+:[0-9]+"
+                exact_match: True
+            mandatory: True
+        fabric_external_routing_profile:
+            descr: "Name of Fabric External Routing Profile"
+            type: "str"
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        bgp_peering_type:
+            descr: "BGP peering type for Spines use in Multi-POD"
+            enum:
+                - "automatic_with_full_mesh"
+                - "automatic_with_rr"
+            mandatory: True
+        use_bgp_password:
+            descr: "Boolean checking if BGP MD5 password should be used (does not to relate to any ACI object/attributes)"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: False
+        bgp_password:
+            descr: "BGP Session Password"
+            type: "str"
+            mandatory: False
+    l3extFabricExtRoutingP.xml:
+        fabric_external_routing_profile:
+            descr: "Name of Fabric External Routing Profile"
+            type: "str"
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        ipn_leaked_subnet:
+            descr: "IPN Subnet that will be leaked inside the POD ISIS"
+            type: "str"
+            regex:
+                pattern: "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+\\/[0-9]+"
+                exact_match: True
+            mandatory: True
+    fvPoDConnP.xml:
+        pod_id:
+            descr: "POD ID"
+            type: "int"
+            range:
+                - 1
+                - 10
+            mandatory: True
+        pod_data_plane_tep:
+            descr: "POD Dataplane plane TEP IP/MASK"
+            type: "str"
+            regex:
+                pattern: "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+"
+                exact_match: True
+            mandatory: True
+    fvnsVlanInstP.robot:
+        alloc_mode:
+            descr: "VLAN Pool Allocation Mode"
+            enum:
+                - "static"
+                - "dynamic"
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "VLAN Pool Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+    fvnsEncapBlk.robot:
+        vlan_pool:
+            descr: "Parent VLAN pool name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        start_vlan:
+            descr: "Encap Block start VLAN Range"
+            type : "int"
+            range :
+                - 1
+                - 4094
+            source: "workbook"
+            mandatory: True
+        stop_vlan:
+            descr: "Encap Block stop VLAN Range"
+            type : "int"
+            range :
+                - 1
+                - 4094
+            source: "workbook"
+            mandatory: True
+        alloc_mode:
+            descr: "Encap Block Allocation Mode"
+            enum:
+                - "static"
+                - "dynamic"
+                - "inherit"
+            source: "workbook"
+            mandatory: True
+        role:
+            descr: "Encap Block Role"
+            enum:
+                - "external"
+                - "internal"
+            source: "workbook"
+            mandatory: True
+        poolAllocMode:
+            descr: "Allocation mode of the parent pool"
+            enum:
+                - "static"
+                - "dynamic"
+            source: "workbook"
+            mandatory: True
+    anyDomP.robot:
+        name:
+            descr: "Domain Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        type:
+            descr: "Domain type"
+            enum:
+                - "physical"
+                - "external_l3"
+                - "external_l2"
+                - "vmm_vmware"
+            source: "workbook"
+            mandatory: True
+        vlan_pool:
+            descr: "Associated VLAN Pool Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+    infraAttEntityP.robot:
+        name:
+            descr: "Name of the Access Attachable Entity Profile (AAEP) "
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        nameAlias:
+            descr: "AAEP Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        description:
+            descr: "Description field"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        enable_infra_vlan:
+            descr: "Boolean, checks if infra VLAN should be enabled on this AAEP. Used for template rendering only, it has no ACI MIT significance"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+        infra_vlan:
+            descr: "Infrastrucuture VLAN Id"
+            type: "int"
+            range:
+                - 1
+                - 4094
+            source: "workbook"
+            mandatory: False
+    infraAttEntityPRsDomP.robot:
+        aaep_name:
+            descr: "Name of the Access Attachable Entity Profile (AAEP) "
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        domain_name:
+            descr: "Name of the Domain "
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        domain_type:
+            descr: "Domain Type"
+            enum:
+                - "physical"
+                - "external_l3"
+                - "external_l2"
+                - "vmm_vmware"
+            source: "workbook"
+            mandatory: True
+    infraAccBndlGrp.robot:
+        name:
+            descr: "Name of the Interface Policy-Group"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "Description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        switch_type:
+            descr: "Defines or Leaf or Spine Interface Policy-Group"
+            enum:
+                - "leaf"
+                - "spine"
+            source: "workbook"
+            mandatory: True
+        interface_policy_group_type:
+            descr: "Defines the type of Interface Policy-Group Access, Port-Channel, virtual Port-Channel"
+            enum:
+                - "Access"
+                - "vPC"
+                - "PC"
+            source: "workbook"
+            mandatory: True
+        lldp_pol:
+            descr: "Name of a LLDP Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        stp_pol:
+            descr: "Name of a Spanning-Tree Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        cdp_pol:
+            descr: "Name of a CDP Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        aaep:
+            descr: " Name of an Access Attachable Entity Profile"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        lacp_pol:
+            descr: "Name of a LACP Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        storm_pol:
+            descr: "Name of a Storm Control Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        link_pol:
+            descr: "Name of a Link Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        l2_int_pol:
+            descr: "NAme of a L2 Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        mcp_pol:
+            descr: "Name of a MCP Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+    infraAccPortP.robot:
+        profile_type:
+            descr: "Interface profile type"
+            enum:
+                - "leaf"
+                - "spine"
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "Interface profile name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "Interface Profile description"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        nameAlias:
+            descr: "Interface Profile Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    infraRSxxPortP.robot:
+        switch_profile:
+            descr: "Switch Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        interface_profile:
+            descr: "Interface Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        switch_profile_type:
+            descr: "Switch Profile Type"
+            enum:
+                - "leaf"
+                - "spine"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        interface_profile_type:
+            descr: "Interface Profile Type"
+            enum:
+                - "leaf"
+                - "spine"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+    infraHPortS.robot:
+        name:
+            descr: "Interface Selector Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "Interface Selector description"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        interface_profile:
+            descr: "Interface Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        from_slot:
+            descr: "Starting Slot in the interface range"
+            type: "int"
+            range:
+                - 1
+                - 8 #Need to support Spine Chassis
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        from_port:
+            descr: "Starting Port in the interface range"
+            type: "int"
+            range:
+                - 1
+                - 96
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        to_slot:
+            descr: "Destination Slot in the interface range"
+            type: "int"
+            range:
+                - 1
+                - 8 #Need to support Spine Chassis
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        to_port:
+            descr: "Destination Port in the interface range"
+            type: "int"
+            range:
+                - 1
+                - 96
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        port_block_description:
+            descr: "Interface Policy-Group Name"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        interface_policy_group:
+            descr: "Interface Policy-Group Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        interface_polgroup_type:
+            descr: "Type of the interface Policy-Group associated with the interface selector"
+            enum:
+                - "PC"
+                - "vPC"
+                - "Access"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        interface_profile_type:
+            descr: "Parent Inteface Profile Type"
+            enum:
+                - "spine"
+                - "leaf"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+    fvTenant.robot:
+        name:
+            descr: "Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "Description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        security_domain:
+            descr: "Security Domain"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        mon_policy:
+            descr: "Monitoring Policy name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        nameAlias:
+            descr: "Tenant Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    fvCtx.robot:
+        tenant:
+            descr: "VRF parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "VRF description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        name:
+            descr: "VRF Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        policy_enforcement:
+            descr: "Policy Control Enforcement Preference"
+            enum:
+                - "enforced"
+                - "unenforced"
+            source: "workbook"
+            mandatory: False
+            default: "enforced"
+        policy_enforcement_direction:
+            descr: "Policy Control Enforcement direction"
+            enum:
+                - "ingress"
+                - "egress"
+            source: "workbook"
+            mandatory: False
+            default: "ingress"
+        bgp_timers:
+            descr: "BGP Timers Policy name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        ospf_timers:
+            descr: "OSPF Timers Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        route_tag_policy:
+            descr: "Route Tag Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        pref_group:
+            descr: "Preferred Group Member, allows communications between EPGs in the group without a contract"
+            enum:
+                - "enabled"
+                - "disabled"
+            mandatory: False
+            default: "disabled"
+            source: "workbook"
+        monitoring_policy:
+            descr: "VRF parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        endpoint_retention_policy:
+            descr: "Endpoint Retention Policy name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        dns_label:
+            descr: "DNS Label Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        golf_vrf_name:
+            descr: "VRF Name has pushed through Oplex to Opflex neighbor"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        bgp_context_ipv4:
+            descr: "BGP IPv4 Address FAmily Context Policy name"
+            type: "str"
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        bgp_context_ipv6:
+            descr: "BGP IPv6 Address FAmily Context Policy name"
+            type: "str"
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        ospf_context_af:
+            descr: "OSPF Context Policy Name"
+            type: "str"
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        golf_opflex_mode:
+            descr: "Boolean determining if GOLF Opflex mode is used, only relevant for template logic, do not match an ACI class or attribute"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+        vzAnyPrefGroup:
+            descr: "Enable or Disbale vzAny Preferred Group Member"
+            enum:
+                - "enabled"
+                - "disabled"
+            source: "workbook"
+            mandatory: False
+        nameAlias:
+            descr: "VRF Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    bgpRtTargetP.robot:
+        vrfName:
+            descr: "VRF Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        tenant:
+            descr: "VRF parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        addressFamily:
+            descr: "Route-Target Address Family"
+            enum:
+                - "ipv4-ucast"
+                - "ipv6-ucast"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        routeTarget:
+            descr: "Route-Target"
+            type: "str"
+            regex:
+                pattern: "route-target:as4-nn2:[0-9]+:[0-9]+"
+                exact_match: True
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        routeTargetType:
+            descr: "Route-Target Type"
+            enum:
+                - "import"
+                - "export"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+    fvBD.robot:
+        name:
+            descr: "Bridge Domain Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "Description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        vrf:
+            descr: "name of the VRF this BD is associated with"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l2_unknown_unicast:
+            descr: "Forwarding parameter for L2 Unknown Unicast destinations"
+            enum:
+                - "flood"
+                - "proxy"
+            source: "workbook"
+            mandatory: True
+        l3_unknown_multicast:
+            descr: Forwarding parameter for Layer 3 unknown Multicast destinations"
+            enum:
+                - "flood"
+                - "opt-flood"
+            source: "workbook"
+            mandatory: True
+        multi_dest_flood:
+            descr: "The multiple destination forwarding method for L2 Multicast, Broadcast, and Link Layer traffic types"
+            enum:
+                - "bd-flood"
+                - "drop"
+                - "encap-flood"
+            source: "workbook"
+            mandatory: True
+        enablePim:
+            descr: "Enables the Protocol Independent Multicast (PIM) protocol on the BD"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            dafault: "no"
+        arp_flood:
+            descr: "Enables ARP flooding"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: True
+        unicast_routing:
+            descr: "Enable Unicast Routing"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: True
+        limit_ip_learning_to_subnet:
+            descr: "Limits IP address learning to the bridge domain subnets only"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "yes"
+        endpoint_data_plane_learning:
+            descr: "Enables or disables endpoint dataplane learning"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "yes"
+        igmp_snoop_policy:
+            descr: "IGMP Snooping Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        endpoint_retention_policy:
+            descr: "Endpoint retention policy name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        igmpInterfacePolicy:
+            descr: "IGMP Interface Policy Name. The template assumes the policy iscreated in the BD Tenant"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        is_bd_legacy:
+            descr: "When bridge domain legacy mode is specified, bridge domain encapsulation is used for all EPGs that reference the bridge domain"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        legacy_bd_vlan:
+            descr: "BD Encapsulation used if BD Legacy mode is used. Mandatory if BD Legacy mode is enabled"
+            type: "int"
+            range:
+                - 1
+                - 4094
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        route_control_profile:
+            descr: "Name of the route-control-profile applied to the BD"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        l3out_for_route_profile:
+            descr: "Name of the L3Out the route-control-profile is applied"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        nameAlias:
+            descr: "VRF Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    fvSubnet.robot:
+        bd_subnet:
+            descr: "BD IP Address in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "Subnet Description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        bridge_domain:
+            descr: "Parent Bridge Domain Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        subnet_scope:
+            descr: "Subnet scope"
+            enum:
+                - "private"
+                - "public"
+                - "shared"
+                - "private,shared"
+                - "public,shared"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        is_primary_address:
+            descr: "Defines if Subnet is the primary subnet on this BD"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        is_virtual_ip:
+            descr: "Defines if Subnet is configured as Virtual IP on this BD"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        subnet_control:
+            descr: "Subnet control IGMP Querier and or No Default SVI Gateway"
+            enum:
+                - "querier"
+                - "no-default-gateway"
+                - "querier,no-default-gateway"
+                - "nd"
+                - "nd,no-default-gateway"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        l3out_for_route_control:
+            descr: "L3OUT to which the Route-control Profile will be applied to"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        route_control_profile:
+            descr: "Route-Control Profile Name associated to this subnet"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        ndRAprefixPolicy:
+            descr: "ND RA Prefix Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    fvRsBDToOut.robot:
+        bd_name:
+            descr: "Bridge Domain Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Bridge Domain parent tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out_name:
+            descr: "Name of the L3OUT associated to the BD"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+    fvAP.robot:
+        name:
+            descr: "Application Profile name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        tenant:
+            descr: "Application Profile parent tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "Description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        qos_class:
+            descr: "Application Profile QoS Class"
+            enum:
+                - "unspecified"
+                - "level1"
+                - "level2"
+                - "level3"
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        nameAlias:
+            descr: "Application Profile Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    fvAEPg.robot:
+        tenant:
+            descr: "EPG parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        app_profile:
+            descr: "EPG parent Application Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        name:
+            descr: "EPG name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "EPG description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        bridge_domain:
+            descr: "Name of the bridge domain the EPG will be associated with"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        custom_qos_pol:
+            descr: "Name of the custom QOS Policy the EPG will be associated with"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        intra_epg_isolation:
+            descr: "Indicates whether the EPG has Intra-EPG Isolation enforced."
+            enum:
+                - "enforced"
+                - "unenforced"
+            source: "workbook"
+            mandatory: False
+            default: "unenforced"
+        dataPlanePolicer:
+            descr: "Name of the ingress dataplane policer assigned to this EPG"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        prefGrMemb:
+            descr: "Mark an EPG as being part of a preferred group or not"
+            enum:
+                - "exclude"
+                - "include"
+            source: "workbook"
+            mandatory: False
+            default: "exclude"
+        floodOnEncap:
+            descr: "A property to specify whether flooding is enabled for the EPGs. If flooding is disabled, the value specified in the BD mode is taken into account."
+            enum:
+                - "enabled"
+                - "disabled"
+            source: "workbook"
+            mandatory: False
+            default: "disabled"
+        nameAlias:
+            descr: "EPG Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        qos_class:
+            descr: "EPG QoS Class"
+            enum:
+                - "unspecified"
+                - "level1"
+                - "level2"
+                - "level3"
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+    fvRsDomAtt.robot:
+        epg_name:
+            descr: "EPG name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        app_profile:
+            descr: "EPG parent Application Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        tenant:
+            descr: "EPG parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        domainName:
+            descr: "Domain Name the EPG is associated to"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        domainType:
+            descr: "Domain Type"
+            enum:
+                - "physical"
+                - "vmm_vmware"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        deployImedcy:
+            descr: "Deployement Immedicay"
+            enum:
+                - "lazy"
+                - "immediate"
+            source: "workbook"
+            mandatory: False
+            default: "lazy"
+        resImedcy:
+            descr: "Resoluton Immediacy"
+            enum:
+                - "lazy"
+                - "immediate"
+                - "pre-provision"
+            source: "workbook"
+            mandatory: False
+            default: "lazy"
+        staticVlanForVmm:
+            descr: "Static VLAN id for VMM"
+            type: int
+            range:
+                - 1
+                - 4094
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        netflowPref:
+            descr: "Netflow preference for VMware DVS"
+            enum:
+                - "disabled"
+                - "enabled"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    fvAEPg_static_binding.robot:
+        tenant:
+            descr: "EPG parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        app_profile:
+            descr: "EPG parent application profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "EPG Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        encap_vlan_id:
+            descr: "Primary EPG VLAN encapsulation Id"
+            type : "int"
+            range :
+                - 1
+                - 4094
+            source: "workbook"
+            mandatory: True
+        mode:
+            descr: "Associated Port mode"
+            enum:
+                - "regular"
+                - "native"
+                - "untagged"
+            source: "workbook"
+            mandatory: True
+        left_node_id:
+            descr: "Switch Node Id"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: True
+        right_node_id:
+            descr: "Switch Node Id (only used for vPC connection)"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: False
+        pod_id:
+            descr: "Switch Pod Id"
+            type: "int"
+            source: "workbook"
+            mandatory: "True"
+        interface_policy_group:
+            descr: "PC or vPC Interface Policy Group Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        access_port_id:
+            descr: "Access Port id  (slot/port)"
+            type: "str"
+            regex:
+                pattern: "([1-9]/[1-9]+|N/A)"
+                exact_match: True
+            source: "workbook"
+            mandatory: False
+        deployImedcy:
+            descr: "Deployement Immedicay"
+            enum:
+                - "lazy"
+                - "immediate"
+            source: "workbook"
+            mandatory: False
+            default: "lazy"
+    fvAEPgCtr.robot:
+        tenant:
+            descr: "EPG parent Tenant Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        app_profile:
+            descr: "EPG parent Application Profile Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "EPG name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        contract:
+            descr: "Contract name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        consumed_ctr:
+            descr: "Boolean checking if contract is consumed"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        provided_ctr:
+            descr: "Boolean checking if contract is provided"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+    vZTaboo.xml:
+        name:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        tenant:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        taboo_subject_name:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        filter_name:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: False
+    vzBrCp.robot:
+        tenant:
+            descr: "Parent tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "Contract Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "Contract description string"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        name_alias:
+            descr: "Contract name alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        qos_class:
+            descr: "User-Defined QOS Class"
+            type:
+                enum:
+                    - level1
+                    - level2
+                    - level3
+                    - unspecified
+            source: "workbook"
+            mandatory: False
+            default: 'unspecified'
+        scope:
+            descr: "The Scope of the contract"
+            type:
+                enum:
+                    - application-profile
+                    - tenant
+                    - context
+                    - global
+            source: "workbook"
+            mandatory : True
+        target_dscp:
+            descr: ""
+            enum:
+                - unspecified
+                - CS0
+                - CS1
+                - AF11
+                - AF12
+                - AF13
+                - CS2
+                - AF21
+                - AF22
+                - AF23
+                - CS3
+                - AF31
+                - AF32
+                - AF33
+                - CS4
+                - AF41
+                - AF42
+                - AF43
+                - VA
+                - CS5
+                - EF
+                - CS6
+                - CS7
+            source: "workbook"
+            mandatory: False
+            default: 'unspecified'
+        tag:
+            descr: "Tag the contract is associated with"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9=!#$%()*,-.:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+    vzFilter.robot:
+        tenant:
+            descr: "Tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "Filter Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "Filter Description field"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        nameAlias:
+            descr: "Filter Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    vzEntry.robot:
+        tenant:
+            descr: "Tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        filter:
+            descr: "Filter Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        name:
+            descr: "Filter Entry Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "Filter Description field"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        nameAlias:
+            descr: "Filter Name Alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        ether_type:
+            descr: "Ether Type"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "unspecified"
+        IP_protocol:
+            descr: "IP Protocol"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        from_source_port:
+            descr: "Start source port block"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        to_source_port:
+            descr: "End source port block"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        from_destination_port:
+            descr: "Start destination port block"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        to_destination_port:
+            descr: "End destination port block"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        tcp_flags:
+            descr: "TCP Flags"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: ""
+        match_only_fragments:
+            descr: "Match only fragments control knob"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        stateful:
+            descr: "Stateful control knob"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        icmp_message:
+            descr: "ICMPv4 message type Flags"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        icmpv6_message:
+            descr: "ICMPv6 message type Flags"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        arp_flag:
+            descr: "ARP flags"
+            enum:
+                - "reply"
+                - "request"
+                - "unspecified"
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+    vzSubj.robot:
+        name:
+            descr: "Subject name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        contract:
+            descr: "Parent Contract Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        description:
+            descr: "Subject Description Field"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        qos_class:
+            descr: "Subject Qos Class"
+            enum:
+                - "level1"
+                - "level2"
+                - "level3"
+                - "unspecified"
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        apply_both_direction:
+            descr: ""
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "yes"
+        reverse_filter_port:
+            descr: ""
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "yes"
+        filter:
+            descr: "Associated Filter"
+            type: "str"
+            length :
+                - 0
+                - 128
+            regex :
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        name_alias:
+            descr: "Subject name Alias"
+            source: "workbook"
+            mandatory: False
+        target_dscp:
+            descr: "Subjet Target DSCP"
+            enum:
+                - unspecified
+                - CS0
+                - CS1
+                - AF11
+                - AF12
+                - AF13
+                - CS2
+                - AF21
+                - AF22
+                - AF23
+                - CS3
+                - AF31
+                - AF32
+                - AF33
+                - CS4
+                - AF41
+                - AF42
+                - AF43
+                - VA
+                - CS5
+                - EF
+                - CS6
+                - CS7
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+    bgpInstP.robot:
+        fabric_bgp_as:
+            descr: "Fabric BGP AS Number"
+            type : "int"
+            range :
+                - 1
+                - 65535
+            mandatory: True
+            default: "None"
+            source: "workbook"
+        bgp_rr_node_id:
+            descr: "BGP Route Reflector Node id"
+            type : "int"
+            range :
+                - 101
+                - 4000
+            mandatory: True
+            default: "None"
+            source: "workbook"
+        pod_id:
+            descr: "BGP Route Reflector POD id"
+            type : "int"
+            range:
+                - 1
+                - 10
+            mandatory: True
+            default: "None"
+            source: "workbook"
+    dnsProfile.robot:
+        name:
+            descr: "DNS Profile name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regexp:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        description:
+            descr: "DNS Profile Description"
+            type: "str"
+            length:
+                - 1
+                - 128
+            regexp:
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            mandatory: False
+            source: "wordbook"
+            default: "None"
+        management_epg:
+            descr: "EPG used for DNS resolution"
+            enum:
+                - "inb"
+                - "oob"
+            mandatory: True
+            source: "wordbook"
+            default : "None"
+        domain_name:
+            descr: "Domain Name"
+            type: "str"
+            length:
+                - 0
+                - 255
+            mandatory: False
+            source: "wordbook"
+            default: "None"
+        is_default_domain:
+            descr: "Define the Domain name as default for this profile"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: False
+            source: "wordbook"
+            default: "no"
+    dnsProv.robot:
+        name:
+            dns_server_name: "DNS Server Provider Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regexp:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        dns_server_address:
+            descr: "DNS Server IPv4 Address."
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        dns_profile_name:
+            descr: "Parent DNS Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        is_preferred_dns:
+            descr: "Is this DNS preferred for the parent DNS Profile"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: False
+            source: "wordbook"
+            default: "no"
+    datetimePol.robot:
+        stratum_value:
+            descr: "Stratum Value used when NTP Master is enabled"
+            type: "int"
+            range:
+                - 1
+                - 14
+            default: "8"
+            mandatory: False
+            source: "wordbook"
+        admin_state:
+            descr: "NTP admin state"
+            enum:
+                - "enabled"
+                - "disabled"
+            default: "None"
+            mandatory: True
+            source: "wordbook"
+        authentication_state:
+            descr: "NTP Authentication state"
+            enum:
+                - "enabled"
+                - "disabled"
+            default: "None"
+            mandatory: True
+            source: "wordbook"
+        master_mode:
+            descr: "Toggle between master clock mode"
+            enum:
+                - "enabled"
+                - "disabled"
+            default: "disabled"
+            mandatory: False
+            source: "wordbook"
+        server_state:
+            descr: "Enable or disable NTP server mode"
+            enum:
+                - "enabled"
+                - "disabled"
+            default: "disabled"
+            mandatory: False
+            source: "wordbook"
+        name:
+            descr: "NTP Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: False
+            default: "default"
+            source: "wordbook"
+        description:
+            descr: NTP Profile Description"
+            type: "str"
+            length:
+                - 0
+                - 128
+            regex:
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            mandatory: False
+            default: "None"
+            source: "wordbook"
+    datetimeNtpProv.robot:
+        name:
+            descr: "NTP FQDN or IP"
+            type: "str"
+            mandatory: True
+            default: "None"
+            source: "wordbook"
+        description:
+            descr: "NTP Profile Description"
+            type: "str"
+            length:
+                - 0
+                - 128
+            regex:
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            mandatory: False
+            default: "None"
+            source: "wordbook"
+        datetime_pol_name:
+            descr: "NTP Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            default: "None"
+            source: "wordbook"
+        min_poll:
+            descr: "Minimum Poll time in seconds"
+            type: "int"
+            range:
+                - 4
+                - 16
+            default: "4"
+            mandatory: False
+            source: "wordbook"
+        max_poll:
+            descr: "Maximum Poll time in seconds"
+            type: "int"
+            range:
+                - 4
+                - 16
+            default: "4"
+            mandatory: False
+            source: "wordbook"
+        is_preferred:
+            descr: "Define the NTP Server as preferred for this profile"
+            enum:
+                - "yes"
+                - "no"
+            default: "no"
+            mandatory: False
+            source: "wordbook"
+        key_id:
+            descr: "Id of the Authentication key, use '0' if no auth key is used"
+            type: "int"
+            range:
+                - 0
+                - 65535
+            mandatory: False
+            default: "0"
+            source: "wordbook"
+        management_epg:
+            descr: "Management EPG"
+            enum:
+                - "inb"
+                - "oob"
+            default: "None"
+            mandatory: True
+    l3extOut.robot:
+        name:
+            descr: "L3 Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name_alias:
+            descr: "L3 Out name alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        description:
+            descr: "L3 Out Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        vrf:
+            descr: "Associated VRF Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        enable_bgp:
+            descr: "Boolean check if BGP should be enabled on L3OUT"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        enable_ospf:
+            descr: "Boolean check if OSPF should be enabled on L3OUT"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        ospf_area_id:
+            descr: "OSPF Area ID in simple Integer notation, mandatory if OSPF is enabled"
+            type: "int"
+            range:
+                - 0
+                - 1000
+            source: "workbook"
+            mandatory: False
+        area_type:
+            descr: "OSPF Area Type, mandatory if OSPF is enabled"
+            enum:
+                - "regular"
+                - "stub"
+                - "nssa"
+            source: "workbook"
+            mandatory: False
+            default: "nssa"
+        l3out_domain:
+            descr: "Associated Domain Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        consumer_label:
+            descr: "Golf Consumer Label"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        provider_label:
+            descr: "Golf Provider Label"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+
+    l3extNodeProf.robot:
+        name:
+            descr: "L3Out Node Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "Parent L3 Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name_alias:
+            descr: "L3Out Node Profile name alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        description:
+            descr: "L3Out Node Profile Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        node_id:
+            descr: "Node Id selected by this profile"
+            type: int
+            range:
+                - 101
+                - 4000
+            mandatory: True
+            source: "workbook"
+        pod_id:
+            descr: "Node POD id"
+            type: int
+            range:
+                - 1
+                - 10
+            source: "workbook"
+            mandatory: True
+        router_id:
+            descr: "Node Router Id"
+            type: str
+            source: "workbook"
+            mandatory: True
+        router_id_as_loopback:
+            descr: "Define the Router ID as Loopback IP"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: True
+        enable_golf:
+            descr: "Boolean Define if Node Profile is used for Golf (fabricExtControl Peering) "
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            mandatory: False
+            default: "no"
+        enable_mpod:
+            descr: "Boolean Define if Node Profile is used for M-POD (fabricExtControl Peering)"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            default: "no"
+            mandatory: False
+        target_dscp:
+            descr: ""
+            enum:
+                - unspecified
+                - CS0
+                - CS1
+                - AF11
+                - AF12
+                - AF13
+                - CS2
+                - AF21
+                - AF22
+                - AF23
+                - CS3
+                - AF31
+                - AF32
+                - AF33
+                - CS4
+                - AF41
+                - AF42
+                - AF43
+                - VA
+                - CS5
+                - EF
+                - CS6
+                - CS7
+            source: "workbook"
+            mandatory: False
+            default: 'unspecified'
+    l3extNodeIntProf.robot:
+        name:
+            descr: "L3Out Interface Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out_node_profile:
+            descr: "L3Out Node Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "Parent L3 Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name_alias:
+            descr: "L3Out Interface Profile name alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        description:
+            descr: "L3Out Interface Profile Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        interface_type:
+            descr: "Interface Type"
+            enum:
+                - "routed"
+                - "routed_sub"
+                - "svi"
+            source: "workbook"
+            mandatory: True
+        path_type:
+            descr: "Interface Path Type"
+            enum:
+                - "vPC"
+                - "PC"
+                - "Access"
+            source: "workbook"
+            mandatory: True
+        vlan_encap_id:
+            descr: "Encapsulation VLAN ID"
+            type: "int"
+            range :
+                - 0
+                - 4000
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        trunk_mode:
+            descr: "Interface mode (trunk, access, etc.)"
+            enum:
+                - "regular"
+                - "untagged"
+                - "native"
+            source: "workbook"
+            mandatory: True
+        left_node_id:
+            descr: "Left Node ID"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        right_node_id:
+            descr: "Right Node ID"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        pod_id:
+            descr: "Switch assigned POD ID"
+            type : "int"
+            range:
+                - 1
+                - 10
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        int_pol_group:
+            descr: "Interface Policy Group (used if interface are vPC or PC)"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        port_id:
+            descr: "Interface ID (used if interface is access)"
+            type: "str"
+            length:
+                - 1
+                - 64
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        ip_addr_side_a:
+            descr: "Side A IP Address in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        ip_addr_side_b:
+            descr: "Side B IP Address in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        ospf_interface_policy:
+            descr: "OSPF Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        mtu:
+            descr: "Interface MTU"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "inherit"
+        autostate:
+            descr: "SVI Autostate"
+            enum:
+                - "enabled"
+                - "disabled"
+            source: "workbook"
+            mandatory: True
+            default: "disabled"
+    bgpPeerP.robot:
+        l3out_node_profile:
+            descr: "L3Out Node Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "Parent L3 Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        bgp_peer_ip:
+            descr: "BGP Peer IP Address"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+        bgp_peer_name:
+            descr: "L3Out Node Profile Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        isGolfPeer:
+            descr: "Boolean Define if BGP Peer is used for GOLF/L3EVPN (fabricExtControl Peering)"
+            enum:
+                - "yes"
+                - "no"
+            source: "workbook"
+            default: "no"
+            mandatory: False
+        remote_bgp_as:
+            descr: "Remote BGP AS Number"
+            type: "int"
+            range :
+                - 0
+                - 4294967295
+            mandatory: True
+            default: "None"
+        local_bgp_as:
+            descr: "Local BGP AS Number"
+            type: "int"
+            range :
+                - 0
+                - 4294967295
+            mandatory: False
+            default: "None"
+        ttl:
+            descr: "BGP Multihop TTL"
+            type: "int"
+            range :
+                - 0
+                - 255
+            mandatory: True
+        control:
+            descr: "BGP Controls"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "send-com,send-ext-com"
+        local_bgp_as_config:
+            descr: "Local BGP AS Configuration"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "asnPropagate"
+    instP.robot:
+        name:
+            descr: "External EPG Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "L3Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name_alias:
+            descr: "L3 Out name alias"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        description:
+            descr: "L3 Out Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        qos_class:
+            descr: "external EPG QoS Class"
+            enum:
+                - "unspecified"
+                - "level1"
+                - "level2"
+                - "level3"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        target_descp:
+            descr: "external EPG Target DSCP"
+            enum:
+                - "unspecified"
+                - "CS0"
+                - "CS1"
+                - "AF11"
+                - "AF12"
+                - "AF13"
+                - "CS2"
+                - "AF21"
+                - "AF22"
+                - "AF23"
+                - "CS3"
+                - "AF31"
+                - "AF32"
+                - "AF33"
+                - "CS4"
+                - "AF41"
+                - "AF42"
+                - "AF43"
+                - "VA"
+                - "CS5"
+                - "EF"
+                - "CS6"
+                - "CS7"
+            source: "workbook"
+            mandatory: False
+            default: "unspecified"
+        prefered_group_member:
+            descr: "Prefered Group Member"
+            enum:
+                - "include"
+                - "exclude"
+            source: "workbook"
+            mandatory: False
+            default: "exclude"
+    l3extSubnet.robot:
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "L3Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        external_epg:
+            descr: "External EPG Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        external_subnet:
+            descr: "Subnet in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        export_route_control:
+            descr: "Export route control"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: False
+            source: "wordbook"
+            default: "no"
+        shared_route_control:
+            descr: "Shared route control"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: False
+            source: "wordbook"
+            default: "no"
+        shared_security:
+            descr: "Shared security import"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: False
+            source: "wordbook"
+            default: "no"
+        aggregate_shared_routes:
+            descr: "Aggregate shared routes"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: False
+            source: "wordbook"
+            default: "no"
+        route_control_profile:
+            descr: "Route Control Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        route_control_profile_direction:
+            descr: "Route Control Profile Direction"
+            enum:
+                - "import"
+                - "export"
+            mandatory: False
+            source: "wordbook"
+            default: "import"
+    vmmDomP.robot:
+        name:
+            descr: "VMM Domain Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        vmm_type:
+            descr: "VMM Domain Type"
+            enum:
+                - "vmm_vmware"
+            source: "workbook"
+            mandatory: False
+            default: "vmm_vmware"
+        vmm_sw_mode:
+            descr: "vSwitch Type"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "default"
+        vcenter_hostname_ip:
+            descr: "vCenter hostname/IP"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        vcenter_controller_name:
+            descr: "vCenter Controller Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        vcenter_datacenter_name:
+            descr: "vCenter Datacenter Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        vcenter_credential_profile:
+            descr: "vCenter Credential Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        vcenter_username:
+            descr: "vCenter Username"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-@]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        stp_policy:
+            descr: "Spanning-tree Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: ''
+        lldp_policy:
+            descr: "LLDP Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: ''
+        cdp_policy:
+            descr: "CDP Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: ''
+        lacp_policy:
+            descr: "LACP Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: ''
+        l2_policy:
+            descr: "L2 Interface Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: ''
+        fw_policy:
+            descr: "FW Policy"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: ''
+    infra_vlan_apic.robot:
+        apic_hostname:
+            descr: "APIC Hostname"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        apic_id:
+            descr: "APIC Fabric ID"
+            type: "int"
+            range :
+                - 1
+                - 100
+            source: "wordbook"
+            mandatory: True
+        pod_id:
+            descr: "APIC POD ID"
+            type: "int"
+            source: "wordbook"
+            mandatory: True
+        infra_vlan:
+            descr: "Fabric Infrastructure VLAN ID"
+            type: "int"
+            range :
+                - 0
+                - 4095
+            source: "wordbook"
+            mandatory: True
+    infra_vlan_node.robot:
+        name:
+            descr: "Node Hostname"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        node_id:
+            descr: "Node Fabric ID"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "wordbook"
+            mandatory: True
+        pod_id:
+            descr: "APIC POD ID"
+            type: "int"
+            source: "wordbook"
+            mandatory: True
+        infra_vlan:
+            descr: "Fabric Infrastructure VLAN ID"
+            type: "int"
+            range :
+                - 0
+                - 4095
+            source: "wordbook"
+            mandatory: True
+    tep_pool_setup.robot:
+        pod_id:
+            descr: "POD ID, asumed to be 1 for the TEP Pool defined in 'fabric_initial_config' workbook"
+            type: "str"
+            length:
+                - 1
+                - 64
+            source: "workbook"
+            mandatory: True
+        tep_pool:
+            descr: "TEP Pool"
+            type: "str"
+            length:
+                - 1
+                - 64
+            source: "workbook"
+            mandatory: True
+    node_provisioning_apic.robot:
+        apic_hostname:
+            descr: "APIC Hostname"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        pod_id:
+            descr: "Node POD ID"
+            type: int
+            range:
+                - 1
+                - 10
+            source: "workbook"
+            mandatory: True
+        node_id:
+            descr: "Node ID"
+            type: int
+            range:
+                - 1
+                - 100
+            mandatory: True
+            source: "workbook"
+        oob_ipv4:
+            descr: "Out-of-Band Management IP Address (IPv4) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_ipv4_gw:
+            descr: "Out-of-Band Management Gateway (IPv4) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_ipv6:
+            descr: "Out-of-Band Management IP Address (IPv6) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_ipv6_gw:
+            descr: "Out-of-Band Management Gateway (IPv6) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv4:
+            descr: "Inband Management IP Address (IPv4) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv4_gw:
+            descr: "Inband Management Gateway (IPv4) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv6:
+            descr: "Inband Management IP Address (IPv6) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv6_gw:
+            descr: "Inband Management Gateway (IPv6) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    node_provisioning_node.robot:
+        name:
+            descr: "Node Hostname"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        pod_id:
+            descr: "Node POD ID"
+            type: int
+            range:
+                - 1
+                - 10
+            source: "workbook"
+            mandatory: True
+        node_id:
+            descr: "Node ID"
+            type: int
+            range:
+                - 101
+                - 4000
+            mandatory: True
+            source: "workbook"
+        serial_number:
+            descr: "Node Serial Number"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+        role:
+            descr: "Node Role"
+            enum:
+                - "leaf"
+                - "spine"
+            mandatory: True
+            source: "workbook"
+        oob_ipv4:
+            descr: "Out-of-Band Management IP Address (IPv4) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_ipv4_gw:
+            descr: "Out-of-Band Management Gateway (IPv4) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_ip:
+            descr: "Alternative variable for Out-of-Band Management IP Address (IPv4) in the form of IP/Mask."
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_gw:
+            descr: "Alternative variable for Out-of-Band Management Gateway (IPv4) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_ipv6:
+            descr: "Out-of-Band Management IP Address (IPv6) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        oob_ipv6_gw:
+            descr: "Out-of-Band Management Gateway (IPv6) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv4:
+            descr: "Inband Management IP Address (IPv4) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv4_gw:
+            descr: "Inband Management Gateway (IPv4) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ip:
+            descr: "Alternative variable for Inband Management IP Address (IPv4) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_gw:
+            descr: "Alternative variable for Inband Management Gateway (IPv4) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv6:
+            descr: "Inband Management IP Address (IPv6) in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        inband_ipv6_gw:
+            descr: "Inband Management Gateway (IPv6) in the form of IP"
+            type: "str"
+            source: "workbook"
+            mandatory: False
+            default: "None"
+    cdpIfPol.robot:
+        name:
+            descr: "CDP Interface Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "CDP Interface Policy Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        cdp_state:
+            descr: "CDP Policy Name"
+            enum:
+                - "enabled"
+                - "disabled"
+            source: "workbook"
+            default: "None"
+            mandatory: True
+    l2IfPol.robot:
+        name:
+            descr: "Layer 2 Interface Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "CDP Interface Policy Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        vlan_scope:
+            descr: "Define Interface Vlan Scope"
+            enum:
+                - "global"
+                - "portlocal"
+            mandatory: True
+            default: "None"
+            source: "workbook"
+        qinq:
+            descr: "Configure the interface for QinQ Tunneling"
+            enum:
+                - "disabled"
+                - "edgePort"
+                - "corePort"
+            mandatory: False
+            source: "wordbook"
+            default: "disabled"
+        reflective_relay:
+            descr: "Configure the interface for reflective relay 802.1Qbg"
+            enum:
+                - "disabled"
+                - "enabled"
+            mandatory: False
+            source: "wordbook"
+            default: "disabled"
+    fabricHIfPol.robot:
+        name:
+            descr: "Link Interface Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "Link Interface Policy Description"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        autoneg:
+            descr: "Interface Negotiation mode"
+            enum:
+                - "on"
+                - "off"
+            mandatory: "True"
+            source: "wordbook"
+            default: "None"
+        speed:
+            descr: "Interface Speed"
+            enum:
+                - "inherit"
+                - "100G"
+                - "40G"
+                - "10G"
+                - "1G"
+                - "100M"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        debounce:
+            descr: "Interface debounce time in ms"
+            type: "int"
+            range:
+                - 0
+                - 5000
+            mandatory: False
+            default: "100"
+            source: "wordbook"
+        fec_mode:
+            descr: "Forwarding Error Correction Mode"
+            enum:
+                - "inherit"
+                - "cl74-fc-fec"
+                - "cl91-rs-fec"
+                - "disable-fec"
+            mandatory: False
+            source: "wordbook"
+            default: "inherit"
+    lldpIfPol.robot:
+        name:
+            descr: "LLDP Interface Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "LLDP Interface Policy Description"
+            type: "str"
+            length:
+                - 1
+                - 128
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        lldp_receive:
+            descr: "LLDP Interface receive state"
+            enum:
+                - "enabled"
+                - "disabled"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        lldp_transmit:
+            descr: "LLDP Interface transmit state"
+            enum:
+                - "enabled"
+                - "disabled"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+    mcpIfPol.robot:
+        name:
+            descr: "MCP Interface Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "MCP Interface Policy Description"
+            type: "str"
+            length:
+                - 1
+                - 128
+            regex:
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        mcp_state:
+            descr: "Enable or disable MCP on an interface"
+            enum:
+                - "enabled"
+                - "disabled"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+    lacpLagPol.robot:
+        name:
+            descr: "PortChannel Interface Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "PortChannel Interface Policy Description"
+            type: "str"
+            length:
+                - 1
+                - 128
+            regex:
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        pc_mode:
+            descr: "Aggregation mode"
+            enum:
+                - "active"
+                - "passive"
+                - "mac-pin"
+                - "mac-pin-nicload"
+                - "off"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        fast_select_hot_stdby:
+            descr: "Boolean used to enabled or disabled Fast selection Hot Standby"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        gracefull_converge:
+            descr: "Boolean used to enabled or disabled Graceful Convergence"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        load_defer:
+            descr: "Boolean used to enabled or disabled Load defer"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        symmetrical_hash:
+            descr: "Boolean used to enabled or disabled Symmetrical Hash"
+            enum:
+                - "yes"
+                - "no"
+            mandatory: True
+            source: "wordbook"
+            default: "None"
+        min_links:
+            descr: "Agg Minimum Links"
+            type: "int"
+            range:
+                - 1
+                - 16
+            mandatory: True
+            source: "wordbook"
+            default: "1"
+        max_links:
+            descr: "Agg Maximum Links"
+            type: "int"
+            range:
+                - 1
+                - 16
+            mandatory: True
+            source: "wordbook"
+            default: "16"
+        hash_key:
+            descr: "Symmetrical Hash Key"
+            enum:
+                - "src-ip"
+                - "dst-ip"
+                - "l4-src-port"
+                - "l4-dst-port"
+            mandatory: False
+            source: "wordbook"
+            default: "None"
+    stpIfPol.robot:
+        name:
+            descr: "STP Interface Policy Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        description:
+            descr: "STP Interface Policy Description"
+            type: "str"
+            length:
+                - 1
+                - 128
+            regex:
+                pattern: "[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: False
+            default: "None"
+        stp_control:
+            descr: "STP BPDU Control feature"
+            enum:
+                - "bpdu-filter"
+                - "bpdu-guard"
+                - "bpdu-filter,bpdu-guard"
+            mandatory: False
+            source: "wordbook"
+            default: "None"
+faults:
+    anyDomP.robot:
+        name:
+            descr: "Domain Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        type:
+            descr: "Domain type"
+            enum:
+                - "physical"
+                - "external_l3"
+                - "external_l2"
+                - "vmm_vmware"
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    fvAEPg.robot:
+        tenant:
+            descr: "EPG parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        app_profile:
+            descr: "EPG parent Application Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        name:
+            descr: "EPG name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    fvnsVlanInstP.robot:
+        alloc_mode:
+            descr: "VLAN Pool Allocation Mode"
+            enum:
+                - "static"
+                - "dynamic"
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "VLAN Pool Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    infraAttEntityP.robot:
+        name:
+            descr: "Name of the Access Attachable Entity Profile (AAEP) "
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    fvCtx.robot:
+        tenant:
+            descr: "VRF parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "VRF Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    fvBD.robot:
+        tenant:
+            descr: "BD parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "Bridge Domain Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    vzBrCp.robot:
+        tenant:
+            descr: "Parent tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "Contract Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    vzFilter.robot:
+        tenant:
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        name:
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    vzEntry.robot:
+        tenant:
+            descr: "Tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        filter:
+            descr: "Filter Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        name:
+            descr: "Filter Entry Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    l3extOut.robot:
+        name:
+            descr: "L3 Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    bgpPeerP.robot:
+        l3out_node_profile:
+            descr: "L3Out Node Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "Parent L3 Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        bgp_peer_ip:
+            descr: "BGP Peer IP Address"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    instP.robot:
+        name:
+            descr: "External EPG Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "L3Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    vpcDom.robot:
+        name:
+            descr: "vPC Domain Name"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    infraNodeP.robot:
+        name:
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+            default: "None"
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    infraAccBndlGrp.robot:
+        name:
+            descr: "Name of the Interface Policy-Group"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    infraAccPortP.robot:
+        profile_type:
+            descr: "Interface profile type"
+            enum:
+                - "leaf"
+                - "spine"
+            source: "workbook"
+            mandatory: True
+        name:
+            descr: "Interface profile name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    vmmDomP.robot:
+        name:
+            descr: "VMM Domain Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    bgpInstP.robot:
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    datetimePol.robot:
+        name:
+            descr: "NTP Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: False
+            default: "default"
+            source: "wordbook"
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+    datetimeNtpProv.robot:
+        name:
+            descr: "NTP FQDN or IP"
+            type: "str"
+            mandatory: True
+            default: "None"
+            source: "wordbook"
+        datetime_pol_name:
+            descr: "NTP Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            default: "None"
+            source: "wordbook"
+        critical:
+            descr: "Critical fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        major:
+            descr: "Major fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+        minor:
+            descr: "Minor fault threshold"
+            type: "int"
+            range :
+                - 0
+                - 9999
+            source: "config"
+            mandatory: True
+operational_state:
+    login.robot:
+        password:
+            descr: "Password for APIC user"
+            type: "str"
+            length:
+                - 1
+                - 64
+            source: "config"
+            mandatory: True
+    connectivity_fabric.robot:
+        connection_type:
+            descr: "Connection type"
+            enum:
+                - "fabric"
+                - "apic"
+                - "host"
+                - "oob"
+                - "console"
+                - "spinehost"
+            source: "wordbook"
+            mandatory: True
+        pod_id:
+            descr: "Fabric POD ID which leaf switch belongs to. Value are looked'ed up in node_provisioning sheet"
+            type : "int"
+            range:
+                - 1
+                - 10
+            source: "wordbook"
+            mandatory: True
+        from_leaf_node:
+            descr: "Hostname of leaf switch (from device)"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        from_port:
+            descr: "Port ID on leaf switch in the format of <slot>/<inteface number>"
+            type: "str"
+            length :
+                - 3
+                - 10
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        to_node:
+            descr: "Hostname of spine switch (to device)"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        to_port:
+            descr: "Port ID on spine switch in the format of <slot>/<inteface number>"
+            type: "str"
+            length :
+                - 3
+                - 10
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+    connectivity_apic.robot:
+        connection_type:
+            descr: "Connection type"
+            enum:
+                - "fabric"
+                - "apic"
+                - "host"
+                - "oob"
+                - "console"
+                - "spinehost"
+            source: "wordbook"
+            mandatory: True
+        pod_id:
+            descr: "Fabric POD ID which leaf switch belongs to. Value are looked'ed up in node_provisioning sheet"
+            type : "int"
+            range:
+                - 1
+                - 10
+            source: "wordbook"
+            mandatory: True
+        from_leaf_node:
+            descr: "Hostname of leaf switch (from device)"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        from_port:
+            descr: "Port ID on leaf switch in the format of <slot>/<inteface number>"
+            type: "str"
+            length :
+                - 3
+                - 10
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        to_node:
+            descr: "Hostname of APIC (to device)"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        to_port:
+            descr: "Port ID on APIC in the format of <slot>/<inteface number>"
+            type: "str"
+            length :
+                - 3
+                - 10
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+    connectivity_host.robot:
+        connection_type:
+            descr: "Connection type"
+            enum:
+                - "fabric"
+                - "apic"
+                - "host"
+                - "oob"
+                - "console"
+                - "spinehost"
+            source: "wordbook"
+            mandatory: True
+        pod_id:
+            descr: "Fabric POD ID which leaf switch belongs to. Value are looked'ed up in node_provisioning sheet"
+            type : "int"
+            range:
+                - 1
+                - 10
+            source: "wordbook"
+            mandatory: True
+        from_leaf_node:
+            descr: "Hostname of leaf switch (from device)"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        from_port:
+            descr: "Port ID on leaf switch in the format of <slot>/<inteface number>"
+            type: "str"
+            length :
+                - 3
+                - 10
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        to_node:
+            descr: "Hostname of conneced device (to device)"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        to_port:
+            descr: "Port name/ID on connected device"
+            type: "str"
+            length :
+                - 1
+                - 64
+            source: "wordbook"
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            mandatory: True
+            default: "None"
+    software_version_apic.robot:
+        pod_id:
+            descr: "Fabric POD ID which the APIC belongs to"
+            type : "int"
+            range:
+                - 1
+                - 10
+            source: "wordbook"
+            mandatory: True
+        apic_id:
+            descr: "APIC Fabric ID"
+            type: "int"
+            range :
+                - 1
+                - 100
+            source: "wordbook"
+            mandatory: True
+        software_version:
+            descr: "Expected Software Version"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "config"
+            mandatory: True
+            default: "None"
+        sw_running_mode:
+            descr: "Expected Software Version"
+            type: enum
+            length :
+                - "normal"
+            source: "config"
+            mandatory: False
+            default: "normal"
+    software_version_node.robot:
+        pod_id:
+            descr: "Fabric POD ID which the switch belongs to"
+            type : "int"
+            range:
+                - 1
+                - 10
+            source: "wordbook"
+            mandatory: True
+        node_id:
+            descr: "Node ID"
+            type: "int"
+            range :
+                - 101
+                - 4000
+            source: "wordbook"
+            mandatory: True
+        software_version:
+            descr: "Expected Software Version"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "config"
+            mandatory: True
+            default: "None"
+        sw_running_mode:
+            descr: "Expected Software Version"
+            type: enum
+            length :
+                - "normal"
+            source: "config"
+            mandatory: False
+            default: "normal"
+    login_cimc.robot:
+        apic_hostname:
+            descr: "APIC Hostname"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        apic_id:
+            descr: "APIC Node ID"
+            type : "int"
+            range:
+                - 1
+                - 100
+            source: "wordbook"
+            mandatory: True
+        cimc_ip:
+            descr: "CIMC IP Address in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+    hardware_state_cimc.robot:
+        apic_hostname:
+            descr: "APIC Hostname"
+            type: "str"
+            length :
+                - 1
+                - 64
+            regex :
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "wordbook"
+            mandatory: True
+            default: "None"
+        apic_id:
+            descr: "APIC Node ID"
+            type : "int"
+            range:
+                - 1
+                - 100
+            source: "wordbook"
+            mandatory: True
+        cimc_ip:
+            descr: "CIMC IP Address in the form of IP/Mask"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+            default: "None"
+    bgpPeerP.robot:
+        l3out_node_profile:
+            descr: "L3Out Node Profile Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        l3out:
+            descr: "Parent L3 Out Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        tenant:
+            descr: "Parent tenant name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "workbook"
+            mandatory: True
+        bgp_peer_ip:
+            descr: "BGP Peer IP Address"
+            type: "str"
+            source: "workbook"
+            mandatory: True
+    route_presence_ipv4.robot:
+        tenant:
+            descr: "Tenant Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "config"
+            mandatory: True
+        name:
+            descr: "VRF Name"
+            type: "str"
+            length:
+                - 1
+                - 64
+            regex:
+                pattern: "[a-zA-Z0-9_.:-]+"
+                exact_match: False
+            source: "config"
+            mandatory: True
+        prefix:
+            type: "str"
+            source: "config"
+            mandatory: True
+            default: "None"
+    bgpInstP.robot:
+        bgp_rr_node_id:
+            descr: "BGP Route Reflector Node id"
+            type : "int"
+            range :
+                - 101
+                - 4000
+            mandatory: True
+            default: "None"
+            source: "workbook"
+        pod_id:
+            descr: "BGP Route Reflector POD id"
+            type : "int"
+            range:
+                - 1
+                - 10
+            mandatory: True
+            default: "None"
+            source: "workbook"
+    interface_counters.robot:
+        counter_collection_interval:
+            descr: "Time interval between counter collection"
+            type: "string"
+            regex:
+                pattern: "[a-zA-Z0-9]+"
+                exact_match: False
+            source: "config"
+            mandatory: True

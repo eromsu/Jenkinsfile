@@ -1,0 +1,65 @@
+devices:
+{% for apic in dafe_data.apic_controller %}
+  {% if apic.apic_hostname != "" %}
+  {% set ip = apic.inband_ipv4.strip() %}
+  {% if ip == "" %}
+    {% set ip = apic.oob_ipv4.strip() %}
+  {% endif %}
+  {% set ip = ip.split('/')[0] %}
+  {% if ip != "" %}
+  {{apic.apic_hostname}}:
+    type: aci
+    os: apic
+    connections:
+      rest:
+        protocol: https
+        ip: {{ip}}
+        port: 443
+        username: {{username}}
+        password: {{password}}
+  {%endif%}
+  {%endif%}
+  {% if apic.cimc_ip != "" %}
+  {% set cimc_ip = apic.cimc_ip.split('/') %}
+  {% if cimc_ip[0] != "" %}
+  {{apic.apic_hostname}}_cimc:
+    type: server
+    os: cimc
+    tacacs:
+      username: {{username}}
+      password_prompt: "assword:"
+    passwords:
+      tacacs: {{password}}
+    connections:
+      cli:
+        protocol: ssh
+        ip: {{cimc_ip[0]}}
+        port: 22
+  {%endif%}
+  {%endif%}
+{%endfor%}
+{% for node in dafe_data.node_provisioning %}
+  {% if node.name != ""%}
+  {% set ip = node.inband_ip.strip() %}
+  {% if ip == "" %}
+    {% set ip = node.oob_ip.strip() %}
+  {% endif %}
+  {% set ip = ip.split('/')[0] %}
+  {% if ip != "" %}
+  {{node.name}}:
+    type: linux
+    os: linux
+    tacacs:
+      username: {{username}}
+    passwords:
+      linux: {{password}}
+    connections:
+      defaults:
+        class: unicon.Unicon
+      cli:
+        protocol: ssh
+        ip: {{ip}}
+        port: 22
+  {%endif%}
+  {%endif%}
+{%endfor%}

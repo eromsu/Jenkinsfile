@@ -1,0 +1,319 @@
+devices:
+  APIC-01:
+    connections:
+      rest:
+        ip: 10.123.136.46
+        password: C1sc0123
+        port: 443
+        protocol: https
+        username: sysedgeconnectnso
+    os: apic
+    type: aci
+  APIC-01_cimc:
+    connections:
+      cli:
+        ip: 10.123.136.31
+        port: 22
+        protocol: ssh
+    os: cimc
+    passwords:
+      tacacs: C!sc0123
+    tacacs:
+      password_prompt: 'assword:'
+      username: admin
+    type: server
+  APIC-02:
+    connections:
+      rest:
+        ip: 10.123.136.47
+        password: C1sc0123
+        port: 443
+        protocol: https
+        username: sysedgeconnectnso
+    os: apic
+    type: aci
+  APIC-02_cimc:
+    connections:
+      cli:
+        ip: 10.123.136.33
+        port: 22
+        protocol: ssh
+    os: cimc
+    passwords:
+      tacacs: C!sc0123
+    tacacs:
+      password_prompt: 'assword:'
+      username: admin
+    type: server
+  APIC-03:
+    connections:
+      rest:
+        ip: 10.123.136.49
+        password: C1sc0123
+        port: 443
+        protocol: https
+        username: sysedgeconnectnso
+    os: apic
+    type: aci
+  APIC-03_cimc:
+    connections:
+      cli:
+        ip: 10.123.136.32
+        port: 22
+        protocol: ssh
+    os: cimc
+    passwords:
+      tacacs: C!sc0123
+    tacacs:
+      password_prompt: 'assword:'
+      username: admin
+    type: server
+  DC2-PRD-CD-LF-203:
+    connections:
+      cli:
+        ip: 10.123.136.121
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  DC2-PRD-ID-LF-303:
+    connections:
+      cli:
+        ip: 10.123.136.122
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  DC2-PRD-OD-LF-201:
+    connections:
+      cli:
+        ip: 10.123.136.119
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  DC2-PRD-OD-LF-301:
+    connections:
+      cli:
+        ip: 10.123.136.120
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-CD-LF-202:
+    connections:
+      cli:
+        ip: 10.123.136.55
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-CD-LF-204:
+    connections:
+      cli:
+        ip: 10.123.136.61
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-CD-LF-302:
+    connections:
+      cli:
+        ip: 10.123.136.56
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-CD-LF-304:
+    connections:
+      cli:
+        ip: 10.123.136.62
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-D-SP-101:
+    connections:
+      cli:
+        ip: 10.123.136.51
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-D-SP-102:
+    connections:
+      cli:
+        ip: 10.123.136.52
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-D-SP-103:
+    connections:
+      cli:
+        ip: 10.123.136.59
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-D-SP-104:
+    connections:
+      cli:
+        ip: 9.9.9.9
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-ID-LF-203:
+    connections:
+      cli:
+        ip: 10.123.136.57
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-ID-LF-303:
+    connections:
+      cli:
+        ip: 10.123.136.58
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-OD-LF-201:
+    connections:
+      cli:
+        ip: 10.123.136.53
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  PRD-OD-LF-301:
+    connections:
+      cli:
+        ip: 10.123.136.54
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: C1sc0123
+    tacacs:
+      username: sysedgeconnectnso
+    type: linux
+  sample_apic:
+    connections:
+      rest:
+        ip: 127.0.0.1
+        password: Cisco123
+        port: 443
+        protocol: https
+        username: admin
+    os: apic
+    type: aci
+  sample_leaf:
+    connections:
+      cli:
+        ip: 127.0.0.1
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: Cisco123
+    tacacs:
+      username: admin
+    type: linux
+testbed: null

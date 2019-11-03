@@ -1,0 +1,21 @@
+site_name: ATAG
+site_description: User documentation for ATAG (ACI Test Auto Generator)
+repro_name: GitHub
+repo_url: https://wwwin-github.cisco.com/AS-Community/ATAG
+site_author: ATAG CX Team
+theme: readthedocs
+pages:
+  - Overview: index.md
+  - User Guide:
+    - Installation: Installing-ATAG.md
+    - Generating ACI tests: Using-ATAG.md
+    - Executing of ACI tests: Executing-ACI-Tests.md
+  - Test Templates:
+    - Which test cases are supported ?: Template-Coverage.md
+    - Configuration Verification: Templates-configuration.md
+    - Fault Verification: Templates-faults.md
+    - Operational State Verification: Templates-operational_state.md
+  - Developer Guide: Developer-Guide.md
+  - Support: Getting_Support.md
+  - Changelog:
+    - 2019: changelog/2019.md

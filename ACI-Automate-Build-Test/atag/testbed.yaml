@@ -1,0 +1,27 @@
+testbed:
+
+devices:
+  sample_apic:
+    connections:
+      rest:
+        ip: 127.0.0.1
+        password: Cisco123
+        port: 443
+        protocol: https
+        username: admin
+    os: apic
+    type: aci
+  sample_leaf:
+    connections:
+      cli:
+        ip: 127.0.0.1
+        port: 22
+        protocol: ssh
+      defaults:
+        class: unicon.Unicon
+    os: linux
+    passwords:
+      linux: Cisco123
+    tacacs:
+      username: admin
+    type: linux

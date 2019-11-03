@@ -1,0 +1,91 @@
+devices:
+  apic1:
+    connections:
+      rest:
+        ip: 10.53.38.125
+        password: C1sc0123
+        port: 443
+        protocol: https
+        username: admin
+    os: apic
+    type: aci
+  # apic1_cimc:
+  #   connections:
+  #     cli:
+  #       ip: 10.49.96.4
+  #       port: 22
+  #       protocol: ssh
+  #   os: cimc
+  #   passwords:
+  #     tacacs: C1sc0123
+  #   tacacs:
+  #     password_prompt: 'assword:'
+  #     username: admin
+  #   type: server
+  # leaf1:
+  #   connections:
+  #     cli:
+  #       ip: 1.1.1.1
+  #       port: 22
+  #       protocol: ssh
+  #     defaults:
+  #       class: unicon.Unicon
+  #   os: linux
+  #   passwords:
+  #     linux: C1sc0123
+  #   tacacs:
+  #     username: admin
+  #   type: linux
+  # leaf2:
+  #   connections:
+  #     cli:
+  #       ip: 1.1.1.2
+  #       port: 22
+  #       protocol: ssh
+  #     defaults:
+  #       class: unicon.Unicon
+  #   os: linux
+  #   passwords:
+  #     linux: C1sc0123
+  #   tacacs:
+  #     username: admin
+  #   type: linux
+  # sample_apic:
+  #   connections:
+  #     rest:
+  #       ip: 127.0.0.1
+  #       password: Cisco123
+  #       port: 443
+  #       protocol: https
+  #       username: admin
+  #   os: apic
+  #   type: aci
+  # sample_leaf:
+  #   connections:
+  #     cli:
+  #       ip: 127.0.0.1
+  #       port: 22
+  #       protocol: ssh
+  #     defaults:
+  #       class: unicon.Unicon
+  #   os: linux
+  #   passwords:
+  #     linux: Cisco123
+  #   tacacs:
+  #     username: admin
+  #   type: linux
+  # spine1:
+  #   connections:
+  #     cli:
+  #       ip: 1.1.1.3
+  #       port: 22
+  #       protocol: ssh
+  #     defaults:
+  #       class: unicon.Unicon
+  #   os: linux
+  #   passwords:
+  #     linux: C1sc0123
+  #   tacacs:
+  #     username: admin
+  #   type: linux
+testbed: null
